@@ -8,6 +8,8 @@ var regex = (function () {
     };
 })();
 
+var youtubeUrl = "https://www.youtube.com/";
+
 var tubecast = (function () {
 
     var checkAndExec = function (url) {
@@ -22,13 +24,16 @@ var tubecast = (function () {
                 var id = null;
 
                 for (var i = matches.length - 1; i >= 0; i--) {
-                    console.log(matches[i]);
+
                     if (!matches[i])
                         continue;
-                    console.log(matches[i]);
+
                     id = matches[i];
                     break;
                 }
+
+                if (id.indexOf(youtubeUrl) > -1)
+                    id = null;
 
                 return {
                     id: id,
@@ -40,7 +45,8 @@ var tubecast = (function () {
     };
 
     var navigateTo = function (url) {
-        tabs.activeTab.url = url;
+        if (tabs.activeTab.url !== url)
+            tabs.activeTab.url = url;
     };
 
     var navigate = {
@@ -59,10 +65,9 @@ var tubecast = (function () {
         var result = checkAndExec(url);
 
         if (!isTest) {
-            if (result !== null && result.id !== null) {
-                console.log(result.id);
+            if (result !== null && result.id !== null && result.id !== "" && result.id !== undefined) {
                 navigate[result.type](result.id);
-            } else navigateTo("http://youtube.com");
+            } else navigateTo(youtubeUrl);
         } else
             return result;
     };

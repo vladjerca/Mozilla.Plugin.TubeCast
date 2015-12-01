@@ -1,16 +1,15 @@
 {
     "title": "TubeCast",
     "name": "tubecast",
-    "version": "0.3.0",
+    "version": "0.3.9",
     "description": "A tubecast helper, that helps load youtube videos quickly into the TubeCast, allowing easy casting to your device.",
     "main": "index.js",
     "author": "Vlad Jerca",
     "engines": {
-        "firefox": ">=38.0a1",
-        "fennec": ">=38.0a1"
+        "firefox": ">=38.0a1"
     },
     "license": "MIT",
     "keywords": [
-    "jetpack"
+        "tubecast", "chromecast", "smart tv"
   ]
 }
